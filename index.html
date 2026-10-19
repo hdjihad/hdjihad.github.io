@@ -7,6 +7,7 @@
 <meta name="description" content="JZ Browser is a small, fast Android browser with an ad blocker, speed dial, themes and a smart downloader. Made by MD Jihad Mia (JZme).">
 <link rel="canonical" href="https://jzbrowser.net/">
 <link rel="icon" href="/images/jz-browser-icon.png">
+<meta name="theme-color" content="#0f1d3d">
 <meta property="og:type" content="website">
 <meta property="og:title" content="JZ Browser – Lite, Fast & Safe">
 <meta property="og:description" content="A small, fast Android browser with an ad blocker, speed dial and themes.">
@@ -36,50 +37,160 @@
 }
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f7fb; --card:#ffffff; --text:#14161c; --muted:#5b6170; --line:#e3e6ee;
-  --accent:#1f5eff; --on-accent:#ffffff;
+  --bg:#ffffff; --soft:#f3f5fb; --card:#ffffff; --ink:#0f1d3d; --muted:#5a6785; --line:#e1e6f0;
+  --cyan:#22b3f0; --orange:#ff7a2f; --pink:#d63ccf; --on-dark:#ffffff;
 }
 @media (prefers-color-scheme: dark){
-  :root{ --bg:#0f1115; --card:#181b22; --text:#eef0f5; --muted:#a3a9b8; --line:#2a2f3a; --accent:#7aa2ff; --on-accent:#0f1115; }
+  :root{ --bg:#0b1020; --soft:#121a2e; --card:#151e35; --ink:#eef2fb; --muted:#a3aec8; --line:#24304d; }
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:640px;margin:0 auto;padding:40px 16px 48px}
-.hero{text-align:center}
-.hero img{width:112px;height:112px;border-radius:26px;box-shadow:0 6px 20px rgba(0,0,0,.12)}
-h1{font-size:32px;line-height:1.15;margin:18px 0 6px}
-.tag{color:var(--muted);margin:0 0 24px}
-.btn{display:inline-block;background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:600;padding:14px 26px;border-radius:999px}
-.features{display:grid;gap:12px;margin:36px 0 0;padding:0;list-style:none}
-.features li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.features strong{display:block}
-.features span{color:var(--muted);font-size:15px}
-footer{text-align:center;color:var(--muted);font-size:14px;margin-top:36px}
-footer a{color:var(--muted)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;font-size:17px}
+.brand img{width:34px;height:34px;border-radius:10px}
+.get{background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;font-size:14px;padding:10px 18px;border-radius:999px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;text-align:center;padding:52px 0 60px}
+.glow{position:absolute;border-radius:50%;filter:blur(40px);opacity:.35;z-index:-1}
+.g1{width:260px;height:260px;background:var(--cyan);left:-90px;top:10px}
+.g2{width:240px;height:240px;background:var(--orange);right:-90px;top:120px}
+.g3{width:220px;height:220px;background:var(--pink);left:30%;bottom:-120px}
+.icon{width:128px;height:128px;border-radius:32px;background:#fff;box-shadow:0 18px 40px rgba(15,29,61,.18);padding:6px}
+.eyebrow{display:inline-block;margin:24px 0 10px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+h1{font:400 clamp(46px,13vw,80px)/.95 "Anton",Impact,sans-serif;text-transform:uppercase;margin:0 0 14px;letter-spacing:.01em}
+h1 .grad{background:linear-gradient(90deg,var(--cyan),var(--orange) 55%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{color:var(--muted);font-size:18px;max-width:30ch;margin:0 auto 28px}
+.play{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);text-decoration:none;padding:12px 26px 12px 20px;border-radius:16px;text-align:left;box-shadow:0 10px 24px rgba(15,29,61,.22)}
+.play svg{flex:none}
+.play small{display:block;font-size:11px;opacity:.75;letter-spacing:.04em}
+.play b{font-size:19px;line-height:1.1}
+.meta{margin:18px 0 0;font-size:14px;color:var(--muted)}
+.meta span{margin:0 6px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:-18px 0 0;position:relative}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 8px;text-align:center;box-shadow:0 8px 22px rgba(15,29,61,.06)}
+.stat b{display:block;font:400 30px/1 "Anton",Impact,sans-serif;letter-spacing:.02em}
+.stat small{color:var(--muted);font-size:12px}
+
+/* features */
+section{padding:56px 0}
+h2{font:400 clamp(30px,8vw,44px)/1 "Anton",Impact,sans-serif;text-transform:uppercase;text-align:center;margin:0 0 10px}
+.sub{text-align:center;color:var(--muted);margin:0 auto 28px;max-width:36ch}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;list-style:none;margin:0;padding:0}
+.grid li{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 16px}
+.grid li.wide{grid-column:1/-1;display:flex;gap:14px;align-items:center}
+.ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;margin:0 0 12px;flex:none}
+.wide .ico{margin:0}
+.ico.c{background:color-mix(in srgb,var(--cyan) 16%,transparent);color:var(--cyan)}
+.ico.o{background:color-mix(in srgb,var(--orange) 16%,transparent);color:var(--orange)}
+.ico.p{background:color-mix(in srgb,var(--pink) 16%,transparent);color:var(--pink)}
+.grid strong{display:block;font-size:16px;line-height:1.3}
+.grid span{color:var(--muted);font-size:14px;line-height:1.45}
+.badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--orange);color:#fff;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:2px}
+section.tint{background:var(--soft)}
+
+/* maker */
+.maker{display:flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;text-decoration:none;box-shadow:0 8px 22px rgba(15,29,61,.06)}
+.maker img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;border:3px solid #fff;box-shadow:0 4px 12px rgba(15,29,61,.18)}
+.maker small{display:block;color:var(--orange);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.maker strong{display:block;font-size:18px;line-height:1.25}
+.maker span{color:var(--muted);font-size:14px}
+.maker .go{margin-left:auto;font-size:22px;color:var(--orange);font-weight:800}
+
+/* final cta */
+.cta{background:#0f1d3d;color:#fff;text-align:center;border-radius:28px;padding:40px 22px;margin:0 20px;position:relative;overflow:hidden}
+.cta:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:var(--orange);opacity:.25;filter:blur(30px);right:-60px;top:-60px}
+.cta h2{color:#fff;margin-bottom:8px}
+.cta p{color:#c9d3ea;margin:0 0 22px}
+.cta .play{background:#fff;color:#0f1d3d}
+
+footer{padding:36px 0 40px;text-align:center;color:var(--muted);font-size:14px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;margin:0 0 12px}
+footer a{text-decoration:none;font-weight:600;color:var(--ink)}
 </style>
 </head>
 <body>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="/"><img src="/images/jz-browser-icon.png" alt="">JZ Browser</a>
+  <a class="get" href="https://play.google.com/store/apps/details?id=com.jz.browser">Get the app</a>
+</div></header>
+
 <main>
-  <section class="hero">
-    <img src="/images/jz-browser-icon.png" alt="JZ Browser icon" width="112" height="112">
-    <h1>JZ Browser</h1>
-    <p class="tag">Lite, fast and safe browser for Android. Only about 4 MB.</p>
-    <a class="btn" href="https://play.google.com/store/apps/details?id=com.jz.browser">Get it on Google Play</a>
+  <div class="hero"><div class="wrap">
+    <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+    <img class="icon" src="/images/jz-browser-icon.png" alt="JZ Browser icon" width="128" height="128">
+    <br><span class="eyebrow">Android browser · by JZme</span>
+    <h1>Browse <span class="grad">light.</span><br>Browse fast.</h1>
+    <p class="tag">JZ Browser is a lite, fast and safe browser for Android. Only about 4&nbsp;MB.</p>
+    <a class="play" href="https://play.google.com/store/apps/details?id=com.jz.browser">
+      <svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M3 2.5v23a1 1 0 0 0 1.5.86l19.5-11.5a1 1 0 0 0 0-1.72L4.5 1.64A1 1 0 0 0 3 2.5z" fill="currentColor"/></svg>
+      <span><small>GET IT ON</small><b>Google Play</b></span>
+    </a>
+    <p class="meta">Free<span>·</span>Android<span>·</span>No sign-up</p>
+  </div></div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>~4 MB</b><small>App size</small></div>
+      <div class="stat"><b>1 GB</b><small>RAM is enough</small></div>
+      <div class="stat"><b>4.7★</b><small>Google Play</small></div>
+    </div>
+  </div>
+
+  <section><div class="wrap">
+    <h2>Why JZ Browser</h2>
+    <p class="sub">Everything you need to browse, nothing that slows your phone down.</p>
+    <ul class="grid">
+      <li><div class="ico c"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><strong>Ad blocker</strong><span>Cleaner pages that load faster.</span></li>
+      <li><div class="ico o"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg></div><strong>Speed dial</strong><span>Your favourite sites, one tap away.</span></li>
+      <li><div class="ico p"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-1.3-1-1.6-1-2.8 0-1 .8-1.7 1.9-1.7H17a4 4 0 0 0 4-4C21 6.4 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7" r="1"/></svg></div><strong>Themes</strong><span>Pick the look you like.</span></li>
+      <li><div class="ico c"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M4 19h16"/></svg></div><strong>Smart downloader<span class="badge">Premium</span></strong><span>See real file sizes before you download.</span></li>
+      <li class="wide"><div class="ico o"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg></div><div><strong>Light on your phone</strong><span>Works well even on phones with 1 GB RAM.</span></div></li>
+    </ul>
+  </div></section>
+
+  <section class="tint"><div class="wrap">
+    <h2>Made in Bangladesh</h2>
+    <p class="sub">Designed, built and grown by one independent developer.</p>
+    <a class="maker" href="/about/">
+      <img src="/images/md-jihad-mia.jpg" alt="MD Jihad Mia">
+      <span><small>Made by</small><strong>MD Jihad Mia</strong><span>Digital Marketer &amp; developer (JZme)</span></span>
+      <span class="go">→</span>
+    </a>
+  </div></section>
+
+  <section>
+    <div class="cta">
+      <h2>Try JZ Browser</h2>
+      <p>Free on Google Play. Small download, big difference.</p>
+      <a class="play" href="https://play.google.com/store/apps/details?id=com.jz.browser">
+        <svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M3 2.5v23a1 1 0 0 0 1.5.86l19.5-11.5a1 1 0 0 0 0-1.72L4.5 1.64A1 1 0 0 0 3 2.5z" fill="currentColor"/></svg>
+        <span><small>GET IT ON</small><b>Google Play</b></span>
+      </a>
+    </div>
   </section>
-
-  <ul class="features">
-    <li><strong>Ad blocker</strong><span>Cleaner pages that load faster.</span></li>
-    <li><strong>Speed dial</strong><span>Your favourite sites, one tap away.</span></li>
-    <li><strong>Themes</strong><span>Pick the look you like.</span></li>
-    <li><strong>Smart downloader</strong><span>See real file sizes before you download (Premium).</span></li>
-    <li><strong>Light on your phone</strong><span>Works well even on phones with 1 GB RAM.</span></li>
-  </ul>
-
-  <footer>
-    Made by <a href="/about/">MD Jihad Mia</a> (JZme) · Bangladesh
-  </footer>
 </main>
+
+<footer><div class="wrap">
+  <nav>
+    <a href="/about/">About the developer</a>
+    <a href="https://play.google.com/store/apps/details?id=com.jz.browser">Google Play</a>
+    <a href="https://github.com/hdjihad">GitHub</a>
+  </nav>
+  © 2026 JZme · MD Jihad Mia · Bangladesh
+</div></footer>
 </body>
 </html>
